@@ -25,13 +25,15 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Status Badge */}
-          <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm">
-            <span className="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse" />
-            Available for new opportunities
-          </Badge>
+          <div className="animate-fade-in-down">
+            <Badge variant="secondary" className="mb-4 px-4 py-2 text-sm">
+              <span className="w-2 h-2 bg-accent rounded-full mr-2 animate-pulse" />
+              Available for new opportunities
+            </Badge>
+          </div>
 
           {/* Main Heading */}
-          <div className="space-y-4">
+          <div className="space-y-4 stagger-children">
             <h1 className="text-6xl md:text-8xl font-bold tracking-tight">
               Hi, I'm{" "}
               <span className="text-gradient">
@@ -42,45 +44,47 @@ const Hero = () => {
               Senior Software Developer
             </h2>
             <div className="flex flex-wrap justify-center gap-3 mt-6">
-              <Badge variant="outline" className="px-4 py-2">Node.js Specialist</Badge>
-              <Badge variant="outline" className="px-4 py-2">10+ Years Experience</Badge>
-              <Badge variant="outline" className="px-4 py-2">Full-Stack Developer</Badge>
+              <Badge variant="outline" className="px-4 py-2 hover-scale">Node.js Specialist</Badge>
+              <Badge variant="outline" className="px-4 py-2 hover-scale">10+ Years Experience</Badge>
+              <Badge variant="outline" className="px-4 py-2 hover-scale">Full-Stack Developer</Badge>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Passionate Node.js developer with expertise in building scalable applications 
-            using modern JavaScript technologies. Experienced in MEAN stack, AWS, and 
-            creating robust server-side solutions.
-          </p>
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Passionate Node.js developer with expertise in building scalable applications 
+              using modern JavaScript technologies. Experienced in MEAN stack, AWS, and 
+              creating robust server-side solutions.
+            </p>
+          </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 animate-bounce-in" style={{ animationDelay: '1.2s' }}>
             <Button size="lg" className="btn-hero px-8 py-6 text-lg">
               <Mail className="mr-2 h-5 w-5" />
               Get In Touch
             </Button>
-            <Button size="lg" variant="outline" className="px-8 py-6 text-lg">
+            <Button size="lg" variant="outline" className="px-8 py-6 text-lg hover-scale">
               <Download className="mr-2 h-5 w-5" />
               Download Resume
             </Button>
           </div>
 
           {/* Social Links */}
-          <div className="flex justify-center gap-6 pt-8">
-            <Button variant="ghost" size="lg" className="rounded-full p-4 hover:bg-primary/10">
+          <div className="flex justify-center gap-6 pt-8 animate-scale-in" style={{ animationDelay: '1.6s' }}>
+            <Button variant="ghost" size="lg" className="rounded-full p-4 hover:bg-primary/10 hover-scale">
               <Github className="h-6 w-6" />
             </Button>
             <Button 
               variant="ghost" 
               size="lg" 
-              className="rounded-full p-4 hover:bg-primary/10"
+              className="rounded-full p-4 hover:bg-primary/10 hover-scale"
               onClick={() => window.open('https://www.linkedin.com/in/sanjeev-fullstack', '_blank')}
             >
               <Linkedin className="h-6 w-6" />
             </Button>
-            <Button variant="ghost" size="lg" className="rounded-full p-4 hover:bg-primary/10">
+            <Button variant="ghost" size="lg" className="rounded-full p-4 hover:bg-primary/10 hover-scale">
               <ExternalLink className="h-6 w-6" />
             </Button>
           </div>

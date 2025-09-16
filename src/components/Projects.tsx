@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Database, Server, Shield } from "lucide-react";
+import AnimatedSection from "@/components/AnimatedSection";
 
 const Projects = () => {
   const projects = [
@@ -76,108 +77,118 @@ const Projects = () => {
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Featured <span className="text-gradient">Projects</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              A showcase of impactful applications I've developed using modern technologies 
-              and best practices in software architecture.
-            </p>
-          </div>
+          <AnimatedSection animation="fade-in-up">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Featured <span className="text-gradient">Projects</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                A showcase of impactful applications I've developed using modern technologies 
+                and best practices in software architecture.
+              </p>
+            </div>
+          </AnimatedSection>
 
           {/* Projects Grid */}
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => {
               const Icon = project.icon;
               return (
-                <Card key={index} className="card-animated group overflow-hidden">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className={`w-12 h-12 bg-gradient-to-r ${project.gradient} rounded-lg flex items-center justify-center`}>
-                          <Icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-xl">{project.title}</CardTitle>
-                          <CardDescription className="mt-1">
-                            {project.description}
-                          </CardDescription>
+                <AnimatedSection 
+                  key={index} 
+                  animation={index % 2 === 0 ? "slide-in-left" : "slide-in-right"}
+                  delay={index * 200}
+                >
+                  <Card className="card-animated group overflow-hidden card-hover">
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className={`w-12 h-12 bg-gradient-to-r ${project.gradient} rounded-lg flex items-center justify-center hover-scale`}>
+                            <Icon className="h-6 w-6 text-white" />
+                          </div>
+                          <div>
+                            <CardTitle className="text-xl">{project.title}</CardTitle>
+                            <CardDescription className="mt-1">
+                              {project.description}
+                            </CardDescription>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    
-                    {/* Technologies */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, techIndex) => (
-                        <Badge key={techIndex} variant="secondary" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardHeader>
-
-                  <CardContent>
-                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                      {project.longDescription}
-                    </p>
-
-                    {/* Features */}
-                    <div className="mb-6">
-                      <h4 className="text-sm font-semibold mb-3 text-primary">Key Features:</h4>
-                      <ul className="space-y-1">
-                        {project.features.slice(0, 3).map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start gap-2 text-xs text-muted-foreground">
-                            <div className="w-1 h-1 bg-accent rounded-full mt-1.5 flex-shrink-0" />
-                            {feature}
-                          </li>
+                      
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech, techIndex) => (
+                          <Badge key={techIndex} variant="secondary" className="text-xs hover-scale">
+                            {tech}
+                          </Badge>
                         ))}
-                        {project.features.length > 3 && (
-                          <li className="text-xs text-muted-foreground/70 italic">
-                            +{project.features.length - 3} more features
-                          </li>
-                        )}
-                      </ul>
-                    </div>
+                      </div>
+                    </CardHeader>
 
-                    {/* Action Buttons */}
-                    <div className="flex gap-3">
-                      {project.url && (
-                        <Button 
-                          size="sm" 
-                          className="btn-hero flex-1"
-                          onClick={() => window.open(project.url, '_blank')}
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          View Live
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                        {project.longDescription}
+                      </p>
+
+                      {/* Features */}
+                      <div className="mb-6">
+                        <h4 className="text-sm font-semibold mb-3 text-primary">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {project.features.slice(0, 3).map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start gap-2 text-xs text-muted-foreground">
+                              <div className="w-1 h-1 bg-accent rounded-full mt-1.5 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                          {project.features.length > 3 && (
+                            <li className="text-xs text-muted-foreground/70 italic">
+                              +{project.features.length - 3} more features
+                            </li>
+                          )}
+                        </ul>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        {project.url && (
+                          <Button 
+                            size="sm" 
+                            className="btn-hero flex-1"
+                            onClick={() => window.open(project.url, '_blank')}
+                          >
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            View Live
+                          </Button>
+                        )}
+                        <Button size="sm" variant="outline" className="px-4 hover-scale">
+                          <Github className="h-4 w-4" />
                         </Button>
-                      )}
-                      <Button size="sm" variant="outline" className="px-4">
-                        <Github className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
               );
             })}
           </div>
 
           {/* Call to Action */}
-          <div className="text-center mt-16">
-            <Card className="card-animated max-w-2xl mx-auto">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-4">Interested in My Work?</h3>
-                <p className="text-muted-foreground mb-6">
-                  I'm always excited to discuss new projects and opportunities. 
-                  Let's build something amazing together!
-                </p>
-                <Button size="lg" className="btn-accent">
-                  <ExternalLink className="mr-2 h-5 w-5" />
-                  View All Projects
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+          <AnimatedSection animation="bounce-in" delay={800}>
+            <div className="text-center mt-16">
+              <Card className="card-animated max-w-2xl mx-auto card-hover">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-4">Interested in My Work?</h3>
+                  <p className="text-muted-foreground mb-6">
+                    I'm always excited to discuss new projects and opportunities. 
+                    Let's build something amazing together!
+                  </p>
+                  <Button size="lg" className="btn-accent">
+                    <ExternalLink className="mr-2 h-5 w-5" />
+                    View All Projects
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

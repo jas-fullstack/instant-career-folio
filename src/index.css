@@ -115,51 +115,92 @@
 }
 
 @layer components {
-  /* Hero button variant */
+  /* Hover scale animation */
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  /* Story link with underline animation */
+  .story-link {
+    @apply relative inline-block after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left;
+  }
+
+  /* Enhanced card animations */
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:shadow-primary/20;
+  }
+
+  /* Button animations */
+  .btn-bounce {
+    @apply transition-all duration-300 hover:scale-110 active:scale-95;
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .text-reveal.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Stagger children animations */
+  .stagger-children > * {
+    @apply opacity-0 translate-y-6;
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+  
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+  /* Hero button variant with enhanced animations */
   .btn-hero {
     background: var(--gradient-primary);
-    @apply text-primary-foreground shadow-lg;
+    @apply text-primary-foreground shadow-lg transition-all duration-300;
     box-shadow: var(--shadow-elegant);
-    transition: var(--transition-smooth);
   }
   
   .btn-hero:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
     box-shadow: var(--shadow-glow);
   }
 
   /* Accent button variant */
   .btn-accent {
     background: var(--gradient-accent);
-    @apply text-accent-foreground shadow-lg;
+    @apply text-accent-foreground shadow-lg transition-all duration-300;
     box-shadow: var(--shadow-accent);
-    transition: var(--transition-smooth);
   }
   
   .btn-accent:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
     filter: brightness(110%);
   }
 
-  /* Animated card */
+  /* Enhanced animated card */
   .card-animated {
     background: var(--gradient-card);
-    @apply border border-border shadow-lg;
-    transition: var(--transition-smooth);
+    @apply border border-border shadow-lg transition-all duration-500;
   }
   
   .card-animated:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px) scale(1.02);
     box-shadow: var(--shadow-elegant);
-    @apply border-primary/20;
+    @apply border-primary/30;
   }
 
-  /* Gradient text */
+  /* Gradient text animations */
   .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease-in-out infinite;
   }
 
   .text-accent-gradient {
@@ -172,14 +213,14 @@
   /* Floating animation */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-15px); }
   }
   
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Pulse glow */
+  /* Pulse glow animation */
   @keyframes pulse-glow {
     0%, 100% { box-shadow: var(--shadow-elegant); }
     50% { box-shadow: var(--shadow-glow); }
@@ -187,5 +228,54 @@
   
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Gradient shift for text */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Loading dots animation */
+  .loading-dots {
+    @apply inline-flex space-x-1;
+  }
+  
+  .loading-dots > div {
+    @apply w-2 h-2 bg-primary rounded-full;
+    animation: loading-dots 1.4s ease-in-out infinite both;
+  }
+  
+  .loading-dots > div:nth-child(1) { animation-delay: -0.32s; }
+  .loading-dots > div:nth-child(2) { animation-delay: -0.16s; }
+  
+  @keyframes loading-dots {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+  }
+
+  /* Intersection Observer animations */
+  .fade-in-section {
+    @apply opacity-0 translate-y-10 transition-all duration-700 ease-out;
+  }
+  
+  .fade-in-section.is-visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Navigation slide down */
+  .nav-slide-down {
+    animation: slide-in-down 0.3s ease-out;
+  }
+  
+  @keyframes slide-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
